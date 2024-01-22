@@ -46,7 +46,7 @@ export async function createPost(
 
     let post: Post;
     try {
-        post = db.post.create({
+        post = await db.post.create({
             data: {
                 title: validation.data.title,
                 content: validation.data.content,
