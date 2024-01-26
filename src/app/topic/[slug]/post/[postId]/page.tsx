@@ -4,6 +4,7 @@ import paths from "@/paths";
 import Link from "next/link";
 import CommentList from "@/components/comments/comment-list";
 import { Suspense } from "react";
+import { Skeleton } from "@nextui-org/react";
 
 interface PostShowPageProps {
     params: { slug: string; postId: string };
@@ -20,7 +21,13 @@ export default function PostShowPage({ params }: PostShowPageProps) {
             >
                 {"< "} Back to {slug}
             </Link>
-            <Suspense fallback={<div>Loading...</div>}>
+            <Suspense
+                fallback={
+                    <div className="m-2">
+                        <Skeleton className="h-8 w-48" />
+                    </div>
+                }
+            >
                 <PostShow postId={postId} />
             </Suspense>
             <CommentCreateForm postId={postId} startOpen />
